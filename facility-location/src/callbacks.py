@@ -61,7 +61,7 @@ class Callback:
         # Loop over all customers
         for i in self.dat.I:
             # Sort costs for customer i
-            sorted_costs = sorted((self.dat.costs[i][j], j) for j in self.dat.J)
+            sorted_costs = sorted((self.dat.shipment_costs[i][j], j) for j in self.dat.J)
             
             # Determine the critical item k_i for the given y_values
             cumulative_y = 0
@@ -73,11 +73,11 @@ class Callback:
                     break
 
             # Since k_i is always found, calculate the contribution of customer i to the cut
-            c_k_i = self.dat.costs[i][k_i]
+            c_k_i = self.dat.shipment_costs[i][k_i]
             contribution = c_k_i
             for cost, j in sorted_costs:
                 if j < k_i:
-                    contribution -= (c_k_i - self.dat.costs[i][j]) * y_values[j]
+                    contribution -= (c_k_i - self.dat.shipment_costs[i][j]) * y_values[j]
             rhs += contribution
 
         # Add the cut as a lazy constraint

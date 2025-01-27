@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-SEED = 2024  # random seed for reproducibility
+SEED = 100  # random seed for reproducibility
 
 DEMANDS = (1, 1)  # the range of customer demands
 CAPACITIES = (500, 1000)  # the range of facility capacities
